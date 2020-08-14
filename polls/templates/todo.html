@@ -1,0 +1,22 @@
+<form method="post" action="/todo/">
+  {% csrf_token %}
+  <div>
+  <table border="1">
+    {{ form }}
+  </table>
+  <button type="submit">Submit</button></form></div>
+  <div>
+  	{% if todo_list %}
+    <ul>
+    {% for todo in todo_list %}
+       <li>{{ todo.title }}</li>
+       <ul>
+       	<li>{{todo.desc}}</li>
+       </ul>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+  </div>
+</form>
