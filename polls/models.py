@@ -24,8 +24,8 @@ class Todo(models.Model):
 	created=models.DateTimeField(auto_now=True)
 	updated=models.DateTimeField(auto_now=True)
 	creator=models.ForeignKey(Creator,on_delete=models.CASCADE, related_name='creator')
-	# attachment=models.ManyToManyField(Attachment) #DELAY
-	# marked=models.ManyToManyField(Creator)
+	attachment=models.ManyToManyField(Attachment) #DELAY
+	marked=models.ManyToManyField(Creator)
 	
 	def __str__(self):
 		return self.title

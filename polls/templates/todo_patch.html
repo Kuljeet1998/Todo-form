@@ -1,15 +1,17 @@
-<form method="post" action="/todo/">
-  {% csrf_token %}
-  <div>
-  <table border="1">
-    {{ form }}
-  </table>
-  <button type="submit">Submit</button></form>
+
 </div>
   <div>
   	{% if todo_list %}
     <ul>
     {% for todo in todo_list %}
+      <li><form method="POST" action="{% url 'patch' pk=todo.id %}">
+          {% csrf_token %}
+          <div>
+          <table border="1">
+            {{ form }}
+          </table>
+          <button type="submit">Submit</button></form>
+      </li>
        <li><a href="/todo/{{todo.id}}/">{{ todo.title }}</a></li>
        <ul>
        	<li>{{todo.desc}}<br>{{todo.marked.user.first_name}}<br>{{todo.attachment.document}}</li>

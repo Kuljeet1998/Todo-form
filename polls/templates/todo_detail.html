@@ -1,0 +1,18 @@
+<form method="post" action="/todo/{{todo_detail.id}}/delete/">
+  {% csrf_token %}
+  <div>
+  	<title>{{todo_detail.title}}</title>
+  	<h1>{{todo_detail.title}}</h1>
+  	<ul>
+  	<li>DESCRIPTION: {{todo_detail.desc}}</li>
+  	<li>Status = {{todo_detail.status}}</li>
+  	<li>Created by : {{todo_detail.creator.user}}</li>
+  </ul>
+  </div>
+
+
+ <div>
+  <button type="submit">Delete</button>
+  
+</div>
+</form>

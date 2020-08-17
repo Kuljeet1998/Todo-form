@@ -9,4 +9,7 @@ urlpatterns=[
 	path('creator/',views.home),
 	path('fileupload/',views.fileupload),
 	path('todo/',views.todo),
+	path('todo/<int:pk>/',views.todo_detail),
+	path('todo/<int:pk>/delete/',views.todo_delete),
+	path('todo/patch/',views.todo_patch,name="patch"),
 ]
