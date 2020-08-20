@@ -1,4 +1,4 @@
-<form method="post" action="/todo/">
+<form method="post" action="">
   {% csrf_token %}
   <div>
   <table border="1">
@@ -12,7 +12,10 @@
     {% for todo in todo_list %}
        <li><a href="/todo/{{todo.id}}/">{{ todo.title }}</a></li>
        <ul>
-       	<li>{{todo.desc}}<br>{{todo.marked.user.first_name}}<br>{{todo.attachment.document}}</li>
+       	<li>{{todo.desc}}<br>
+       		<a href="{% url 'update_todo' todo.id%}">EDIT</a>
+       		<br><br>
+       	</li>
        </ul>
     {% endfor %}
     </ul>

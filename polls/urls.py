@@ -11,5 +11,5 @@ urlpatterns=[
 	path('todo/',views.todo),
 	path('todo/<int:pk>/',views.todo_detail),
 	path('todo/<int:pk>/delete/',views.todo_delete),
-	path('todo/patch/',views.todo_patch,name="patch"),
+	path('todo/update/<int:pk>/',views.todo_update, name="update_todo"),
 ]

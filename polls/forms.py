@@ -53,32 +53,19 @@ class NotificationForm(forms.Form):
 	todos=forms.ModelChoiceField(queryset=Todo.objects.all())
 	
 class TodoPatchForm(forms.Form):
+	title=forms.CharField()
+	desc=forms.CharField()
 	status=forms.IntegerField()
+	creator=forms.ModelChoiceField(queryset=Creator.objects.all())
+	attachment=forms.ModelMultipleChoiceField(queryset=Attachment.objects.all(),required=False)
+	marked=forms.ModelMultipleChoiceField(queryset=Creator.objects.all(),required=False)
 
 	def clean(self):
 		cleaned_data=super(TodoPatchForm,self).clean()
+		title=cleaned_data.get("title")
+		desc=cleaned_data.get("desc")
 		status=cleaned_data.get("status")
-
-		if not status:
-			raise forms.ValidationError("Cant be empty")
-		
+		creator=cleaned_data.get("creator")
+		attachment=cleaned_data.get("attachment")
+		marked=cleaned_data.get("marked")
 	
-	# def update(pk,instance):	
-	# 	todo_object=get_object_or_404(Todo,id=pk)
-	# 	if todo_object.status ==1 and status==2:
-	# 		todo=Todo(title=todo_object.title,desc=todo_object.desc,status=status,creator=todo_object.creator)
-	# 		todo.save()
-	# 		todo.attachment.set(attachment)
-	# 		todo.marked.set(marked)
-	# 	elif todo_object.status==2 and status==3:
-	# 		todo=Todo(title=todo_object.title,desc=todo_object.desc,status=status,creator=todo_object.creator)
-	# 		todo.save()
-	# 		todo.attachment.set(attachment)
-	# 		todo.marked.set(marked)
-	# 	elif todo_object.status==3:
-	# 		todo=Todo(title=todo_object.title,desc=todo_object.desc,status=status,creator=todo_object.creator)
-	# 		todo.save()
-	# 		todo.attachment.set(attachment)
-	# 		todo.marked.set(marked)
-	# 	else:
-	# 		HttpResponse("Not allowed !!")	
